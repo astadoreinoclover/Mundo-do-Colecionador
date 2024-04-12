@@ -1,0 +1,7 @@
+.campo {
+    width: 100%;
+}
+
+.area {
+    height: calc(100vh - 90px);
+}
