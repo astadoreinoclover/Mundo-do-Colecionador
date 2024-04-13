@@ -40,18 +40,26 @@ function Cadastro(){
             const verificarCadastroResponse = await fetch("http://localhost:3004/verificar-cadastro", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
-                body: JSON.stringify({ email: data.email, cpf: data.cpf })
+                body: JSON.stringify({ email: data.email})
+            });
+
+            const verificarCadastroResponse2 = await fetch("http://localhost:3004/verificar-cadastro2", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({ cpf: data.cpf})
             });
 
             const verificarCadastro = await verificarCadastroResponse.json();
+            const verificarCadastro2 = await verificarCadastroResponse2.json();
 
-            if (verificarCadastro.cadastroExistente) {
+            if (verificarCadastro.cadastroExistente || verificarCadastro2.cadastroExistente) {
                 Swal.fire({
                     title: "Email ou Cpf já cadastrados",
                     icon: "warning"
                   });
                 return;
             }
+
             const response = await fetch("http://localhost:3004/usuario", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
@@ -62,12 +70,17 @@ function Cadastro(){
                 const dados = await response.json();
                 if (Number(dados.id) > 0) {
                     mudaLogin({ id: Number(dados.id), nome: dados.nome });
-                    router.push("/");
+                    router.push("/inicial");
                 } else {
                     toast.error("Erro! Cadastro falhou");
                 }
             } else {
+                Swal.fire({
+                    title: "Erro ao Cadastrar",
+                    icon: "warning"
+                });
                 throw new Error("Erro ao cadastrar. Por favor, tente novamente.");
+                return;
             }
         } catch (error) {
                 console.error("Erro ao processar o cadastro:", error);
