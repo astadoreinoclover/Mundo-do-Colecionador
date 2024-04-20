@@ -10,6 +10,7 @@ import Router from "next/router";
 export interface itemProps {
   item: any;
   categoria: string
+  titulo: string
 }
 
 function Inicial() {

@@ -2,13 +2,13 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useContext } from 'react';
 import { ClienteContext } from "../context/ClienteContext"
-import "./titulo.css"
 import Link from "next/link"
 
-function Titulos() {
+
+function Itens() {
   const { idClienteLogado } = useContext(ClienteContext)
-  const itemClicadoJSON = localStorage.getItem('itemClicado');
-  const itemClicado = JSON.parse(itemClicadoJSON);
+  const tituloClicadoJSON = localStorage.getItem('tituloClicado');
+  const tituloClicado = tituloClicadoJSON ? JSON.parse(tituloClicadoJSON) : null;
 
   const [dados, setDados] = useState([])
 
@@ -17,13 +17,13 @@ function Titulos() {
 
       const data = {
         usuario_id: idClienteLogado,
-        categoria: itemClicado.categoria
+        titulo: tituloClicado
       };
 
       console.log(JSON.stringify(data))
 
       try {
-        const response = await fetch("http://localhost:3004/itensuser2", {
+        const response = await fetch("http://localhost:3004/itempelotitulo", {
           method: "POST",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify(data)
@@ -40,21 +40,10 @@ function Titulos() {
 
   }, [])
 
-  const [tituloClicado, setTituloClicado] = useState(null);
-
-  const handleItemClick = (item) => {
-    setTituloClicado(item.titulo);
-  };
-  localStorage.setItem('tituloClicado', JSON.stringify(tituloClicado));
-
-  console.log(tituloClicado);
-
-  const listar = dados.map((item) =>(
-    <div className="card" onClick={() => handleItemClick(item)}>
-        <Link href={{ pathname: '/itens', query: { itemClicado: JSON.stringify(item.titulo) } }}>
-          <img src={item.capa} alt= "Capa ${item.titulo}" />
-          <h1>{item.titulo}</h1>
-        </Link>
+  const listar = dados.map((item: any) =>(
+    <div className="card" >
+        <img src={item.item.capa} alt="" />
+        <h1>{item.item.titulo}</h1>
       </div>
   ))
 
@@ -67,4 +56,4 @@ function Titulos() {
   );
 }
 
-export default Titulos;
+export default Itens;
