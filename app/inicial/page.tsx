@@ -1,8 +1,11 @@
 'use client'
 import Link from "next/link"
 import "./inicial.css"
-import { useContext, useEffect, useState } from 'react';
+import { SetStateAction, useContext, useEffect, useState } from 'react';
 import { ClienteContext } from "../context/ClienteContext"
+import ReactDOM from "react-dom";
+import React from "react";
+import Router from "next/router";
 
 export interface itemProps {
   item: any;
@@ -17,19 +20,18 @@ function Inicial() {
     async function recebeDados() {
 
       const data = {
-        //usuario_id: idClienteLogado
-        usuario_id: 4
+        usuario_id: idClienteLogado
       };
 
       console.log(JSON.stringify(data))
-  
+
       try {
         const response = await fetch("http://localhost:3004/itensuser", {
           method: "POST",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify(data)
         });
-  
+
         const dados = await response.json();
         console.log(dados);
         setDados(dados)
@@ -38,17 +40,46 @@ function Inicial() {
       }
     }
     recebeDados()
-  
-  }, [])  
-  
+
+  }, [])
+
+  const [itemClicado, setItemClicado] = useState<itemProps | null>(null);
+
+  const handleItemClick = (item: itemProps) => {
+    setItemClicado(item);
+  };
+  localStorage.setItem('itemClicado', JSON.stringify(itemClicado));
+
+  console.log(itemClicado)
 
   const listar = dados.map((item: itemProps) => (
-    <h1 className="m-5">{item.categoria}</h1>
+      <div className="card" key={item.categoria} onClick={() => handleItemClick(item)}>
+        <Link href={{ pathname: '/titulos', query: { itemClicado: JSON.stringify(item) } }}>
+          {item.categoria === "manga" && (
+            <div>
+              <img src="manga.jpg" alt="Manga" className="card-img-top" />
+              <h1>Manga</h1>
+            </div>
+          )}
+          {item.categoria === "hq" && (
+            <div>
+              <img src="hq.jpg" alt="HQ" className="card-img-top" />
+              <h1>HQ</h1>
+            </div>
+          )}
+          {item.categoria === "importado" && (
+            <div>
+              <img src="importado.jpg" alt="Importado" className="card-img-top" />
+              <h1>Importados</h1>
+            </div>
+          )}
+        </Link>
+      </div>
   ));
 
   return (
-    <div className="max-w-7xl mx-auto mt-6 area">
-      <div className="cards-container bg-blue-500">
+    <div className="area ">
+      <div className="cards-container">
         {listar}
       </div>
       <Link href="/cadastrar-item" className="area-mais">

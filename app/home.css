@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
 
 .area {
-    height: calc(100vh - 90px);
+    height: auto;
 }
 
 .font {

@@ -34,10 +34,10 @@ function Cabecario() {
                 <img src="./logo.png" className="h-12" alt=" Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
             </Link>
-            <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-            <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+            <div className="block rounded-lg  md:block md:w-auto" id="navbar-solid-bg">
+            <ul className="flex flex-col font-medium mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                 <li>
-                    <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" className="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-4xl px-5 py-2.5 text-center inline-flex items-center" type="button">
+                    <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" className="text-white block focus:ring-4 focus:outline-none font-medium rounded-lg text-4xl px-5 py-2.5 text-center items-center" type="button">
                         <FaUserCircle />
                     </button>
 
