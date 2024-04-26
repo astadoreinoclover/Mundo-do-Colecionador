@@ -39,12 +39,20 @@ function Itens() {
     recebeDados()
 
   }, [])
+  const [volumeClicado, setVolumeClicado] = useState(null);
+
+  const handleItemClick = (item:any) => {
+    setVolumeClicado(item.item.volume);
+  };
+  localStorage.setItem('volumeClicado', JSON.stringify(volumeClicado));
 
   const listar = dados.map((item: any) =>(
-    <div className="card" >
+    <div className="card" onClick={() => handleItemClick(item)}>
+      <Link href={{ pathname: '/volume', query: { volumeClicado: JSON.stringify(item.item.volume) } }}>
         <img src={item.item.capa} alt="" />
-        <h1>{item.item.titulo}</h1>
-      </div>
+        <h1>{item.item.titulo} - Vol.{item.item.volume}</h1>
+      </Link>
+    </div>
   ))
 
   return (

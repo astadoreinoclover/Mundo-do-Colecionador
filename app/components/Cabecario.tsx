@@ -23,6 +23,7 @@ function Cabecario() {
         }).then((result: { isConfirmed: any }) => {
         if (result.isConfirmed) {
             mudaLogin({ id: null, nome: ""})
+            window.location.href = './';
         }
         });
     }
@@ -56,7 +57,9 @@ function Cabecario() {
                                 {idClienteLogado ?
                                     <div className="text-center">
                                     <span className="text-red-600 " onClick={logout} 
-                                            style={{cursor: 'pointer'}}> sair</span>  
+                                            style={{cursor: 'pointer'}}> 
+                                                sair
+                                            </span>  
                                     </div>
                                     :
                                     <Link href="./cadastro" className="text-center block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cadastro</Link>
