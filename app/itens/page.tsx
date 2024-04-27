@@ -9,6 +9,8 @@ function Itens() {
   const { idClienteLogado } = useContext(ClienteContext)
   const tituloClicadoJSON = localStorage.getItem('tituloClicado');
   const tituloClicado = tituloClicadoJSON ? JSON.parse(tituloClicadoJSON) : null;
+  const itemClicadoJSON = localStorage.getItem('itemClicado');
+  const itemClicado = itemClicadoJSON? JSON.parse(itemClicadoJSON) : null;
 
   const [dados, setDados] = useState([])
 
@@ -17,7 +19,8 @@ function Itens() {
 
       const data = {
         usuario_id: idClienteLogado,
-        titulo: tituloClicado
+        titulo: tituloClicado,
+        categoria: itemClicado.categoria
       };
 
       console.log(JSON.stringify(data))

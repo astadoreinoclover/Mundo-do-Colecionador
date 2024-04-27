@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { ClienteContext } from "../context/ClienteContext";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import "./cadastrar-item.css"
 
 interface Inputs {
     titulo: string;
@@ -70,46 +71,56 @@ function CadastrarItem() {
 
 
     return (
-        <div className="max-w-7xl mx-auto mt-6 area">
-            <form className="max-w-sm mx-auto" onSubmit={handleSubmit(enviaDados)}>
-                <div>
-                    <label htmlFor="titulo" className="block text-sm font-medium text-gray-700">Título</label>
-                    <input type="text" id="titulo" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("titulo")} />
+    <div className="corpo-ci">
+        <div className="background-images-ci">
+            <img src="./hq.jpg" alt="Livro 1" />
+            <img src="./manga.jpg" alt="Livro 2" className="img-2-ci" />
+            <img src="./importado.jpg" alt="Livro 3" className="img-3-ci" />
+            <img src="./img/logo.png" alt="Livro 4" className="img-4-ci" />
+        </div>
+
+        <div className="container-ci">
+            <h2 className="form-de-liv-ci">Formulário de Livros</h2>
+            <form onSubmit={handleSubmit(enviaDados)}>
+                <div className="form-group-ci">
+                <label htmlFor="titulo">Título:</label>
+                <input type="text" id="titulo" {...register("titulo")} required />
                 </div>
-                <div>
-                    <label htmlFor="genero" className="block text-sm font-medium text-gray-700">Gênero</label>
-                    <input type="text" id="genero" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("genero")} />
+                <div className="form-group-ci">
+                <label htmlFor="volume">Volume:</label>
+                <input type="text" id="volume" {...register("volume")}/>
                 </div>
-                <div>
-                    <label htmlFor="editora" className="block text-sm font-medium text-gray-700">Editora</label>
-                    <input type="text" id="editora" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("editora")} />
+                <div className="form-group-ci">
+                <label htmlFor="capa">Capa:</label>
+                <input type="text" id="capa" {...register("capa")} />
                 </div>
-                <div>
-                    <label htmlFor="categoria" className="block text-sm font-medium text-gray-700">Categoria</label>
-                    <select id="categoria" className="campo mt-1 p-2 border border-gray-300 rounded-md" {...register("categoria")}>
-                        <option value="">Selecione...</option>
-                        <option value="manga">Manga</option>
-                        <option value="hq">HQ</option>
-                        <option value="importado">Importado</option>
-                    </select>
+                <div className="form-group-ci">
+                <label htmlFor="valor">Valor:</label>
+                <input type="text" id="valor" {...register("valor")} required />
                 </div>
-                <div>
-                    <label htmlFor="capa" className="block text-sm font-medium text-gray-700">Capa</label>
-                    <input type="text" id="capa" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("capa")} />
+                <div className="form-group-ci">
+                <label htmlFor="editora">Editora:</label>
+                <input type="text" id="editora" {...register("editora")} />
                 </div>
-                <div>
-                    <label htmlFor="volume" className="block text-sm font-medium text-gray-700">Volume</label>
-                    <input type="text" id="volume" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("volume")} />
+                <div className="form-group-ci">
+                <label htmlFor="genero">Gênero:</label>
+                <input type="text" id="genero" {...register("genero")} />
                 </div>
-                <div>
-                    <label htmlFor="valor" className="block text-sm font-medium text-gray-700">Valor</label>
-                    <input type="text" id="valor" className="campo mt-1 p-2 border border-gray-300 rounded-md" required {...register("valor")} />
+                <div className="form-group-ci">
+                <label htmlFor="categoria">Categoria:</label>
+                <select id="categoria" {...register("categoria")} required>
+                    <option value="">Selecione...</option>
+                    <option value="manga">Manga</option>
+                    <option value="hq">HQ</option>
+                    <option value="importado">Importado</option>
+                </select>
                 </div>
-                <p className="text-center mt-5">
-                    <button type="submit" className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Cadastrar</button>
-                </p>
+                <div className="form-group-ci">
+                    <button type="submit">Enviar</button>
+                </div>
             </form>
         </div>
+    </div>
     );
 }
 
