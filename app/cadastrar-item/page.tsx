@@ -84,27 +84,27 @@ function CadastrarItem() {
             <form onSubmit={handleSubmit(enviaDados)}>
                 <div className="form-group-ci">
                 <label htmlFor="titulo">Título:</label>
-                <input type="text" id="titulo" {...register("titulo")} required />
+                <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="volume">Volume:</label>
-                <input type="text" id="volume" {...register("volume")}/>
+                <input className="input-campos" type="text" id="volume" {...register("volume")}/>
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="capa">Capa:</label>
-                <input type="text" id="capa" {...register("capa")} />
+                <input className="input-campos" type="text" id="capa" {...register("capa")} />
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="valor">Valor:</label>
-                <input type="text" id="valor" {...register("valor")} required />
+                <input className="input-campos" type="text" id="valor" {...register("valor")} required />
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="editora">Editora:</label>
-                <input type="text" id="editora" {...register("editora")} />
+                <input className="input-campos" type="text" id="editora" {...register("editora")} />
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="genero">Gênero:</label>
-                <input type="text" id="genero" {...register("genero")} />
+                <input className="input-campos" type="text" id="genero" {...register("genero")} />
                 </div>
                 <div className="form-group-ci">
                 <label htmlFor="categoria">Categoria:</label>

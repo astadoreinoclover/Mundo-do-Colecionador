@@ -59,7 +59,7 @@ function Login() {
                 <form onSubmit={handleSubmit(enviaDados)}>
                     <input type="email" id="email" placeholder="Digite seu email" required {...register("email")} />
                     <div className="password-input-container">
-                      <input type={showPassword ? 'text' : 'password'} 
+                      <input className="senha" type={showPassword ? 'text' : 'password'} 
                       id="password" 
                       placeholder="Digite sua senha" 
                       required 

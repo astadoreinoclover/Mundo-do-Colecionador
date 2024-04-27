@@ -32,7 +32,7 @@
     margin-bottom: 5px;
 }
 
-.form-group-ci input[type="text"],
+.form-group-ci .input-campos,
 .form-group-ci select {
     width: calc(100% - 20px);
     padding: 10px;

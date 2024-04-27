@@ -16,6 +16,7 @@ export interface itemProps {
 function Inicial() {
   const { idClienteLogado } = useContext(ClienteContext)
   const [dados, setDados] = useState([])
+  const [totalGasto, setTotalGasto] = useState(0);
   const idlogadoJSON = localStorage.getItem('idClienteLogado');
   const idlogado = idlogadoJSON ? JSON.parse(idlogadoJSON) : null;
 
@@ -35,9 +36,20 @@ function Inicial() {
           body: JSON.stringify(data)
         });
 
+        const response2 = await fetch("http://localhost:3004/total", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
         const dados = await response.json();
         console.log(dados);
+
+        const dados2 = await response2.json();
+        console.log(dados2);
+
         setDados(dados)
+        setTotalGasto(dados2.total_gasto);
       } catch (error) {
         console.error("Erro ao receber dados:", error);
       }
@@ -91,12 +103,11 @@ function Inicial() {
       </div>
       <div className="footer-i">
         <div className="total-spent-i">
-          Total Gasto: R$ XXXX,XX
+          Total Gasto: R$ {totalGasto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
         </div>
         <Link href="/cadastrar-item" className="add-button-i">Adicionar Item</Link>
       </div>
     </div>
-    
   )
 }
 
